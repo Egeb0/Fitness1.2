@@ -1,3 +1,4 @@
+// app/layout.tsx
 import "./globals.css";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
@@ -27,10 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900`} // Dark background for the app
       >
         <ClientWrapper>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col text-white"> {/* Wrap the main layout structure */}
             <Header />
             <Navbar />
             <main className="flex-grow">{children}</main>
@@ -44,9 +45,9 @@ export default function RootLayout({
 
 function Header() {
   return (
-    <header className="bg-purple-400 text-white py-4 shadow-lg">
+    <header className="bg-gray-800 text-white py-4 shadow-lg">
       <h1 className="text-center text-3xl font-bold drop-shadow-lg">
-      Fitness Tracker 💪
+        Fitness Tracker 💪
       </h1>
     </header>
   );
@@ -54,14 +55,20 @@ function Header() {
 
 function Navbar() {
   return (
-    <nav className="bg-white shadow-md py-3">
-      <ul className="flex justify-center space-x-4">
+    <nav className="bg-gray-700 shadow-md py-3">
+      <ul className="flex justify-center space-x-6">
         <li>
-      
-        
+          <a
+            href="/"
+            className="text-white hover:text-purple-300 font-semibold" // Link to the main page
+          >
+            Dashboard {/* Main page link */}
+          </a>
+        </li>
+        <li>
           <a
             href="/about"
-            className="text-gray-700 hover:text-purple-500 font-semibold"
+            className="text-white hover:text-purple-300 font-semibold"
           >
             About
           </a>
@@ -69,7 +76,7 @@ function Navbar() {
         <li>
           <a
             href="/contact"
-            className="text-gray-700 hover:text-purple-500 font-semibold"
+            className="text-white hover:text-purple-300 font-semibold"
           >
             Contact
           </a>

@@ -37,7 +37,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-500 via-purple-400 to-indigo-300 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-800 via-gray-900 to-black relative overflow-hidden">
       {/* Jumping Muscle Emojis */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, index) => (
@@ -55,18 +55,18 @@ export default function LoginPage() {
         ))}
       </div>
 
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg z-10">
-        <h2 className="text-3xl font-bold text-center text-purple-700 mb-4">
+      <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg z-10">
+        <h2 className="text-3xl font-bold text-center text-purple-300 mb-4">
           Welcome Back to Your Fitness Tracker!
         </h2>
-        <p className="text-center text-gray-600 mb-6">
+        <p className="text-center text-gray-400 mb-6">
           Log in to track your progress and achieve your fitness goals! 💪🏋️‍♂️
         </p>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           {/* Email Address */}
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm text-gray-300 mb-1">
               Email Address
             </label>
             <input
@@ -74,13 +74,13 @@ export default function LoginPage() {
               id="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-2 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-800"
             />
           </div>
 
           {/* Password */}
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm text-gray-300 mb-1">
               Password
             </label>
             <input
@@ -88,18 +88,18 @@ export default function LoginPage() {
               id="password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-2 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-800"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-pink-400 to-purple-400 text-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+            className="w-full py-3 bg-gradient-to-r from-pink-400 to-purple-400 text-white rounded-lg shadow-lg hover:bg-blue-400 transform hover:scale-105 transition"
           >
             Log In
           </button>
         </form>
-        <p className="mt-4 text-center text-gray-600">
+        <p className="mt-4 text-center text-gray-400">
           Don’t have an account?{" "}
           <a href="/sign-up" className="text-pink-500 hover:underline">
             Create Account
