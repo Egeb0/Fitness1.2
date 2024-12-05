@@ -1,0 +1,241 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Confetti from "react-confetti";
+
+export default function SignUpPage() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    dateOfBirth: "",
+    gender: "",
+    nationality: "",
+  });
+  const [error, setError] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [completion, setCompletion] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  // Calculate form completion progress
+  useEffect(() => {
+    const filledFields = Object.values(formData).filter((val) => val !== "").length;
+    setCompletion((filledFields / Object.keys(formData).length) * 100);
+  }, [formData]);
+
+  // Update form data and password strength
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+
+    if (id === "password") {
+      setPasswordStrength(checkPasswordStrength(value));
+    }
+  };
+
+  // Check password strength
+  const checkPasswordStrength = (password: string) => {
+    if (password.length >= 8 && /\d/.test(password) && /[A-Z]/.test(password)) {
+      return "Strong";
+    } else if (password.length >= 6) {
+      return "Medium";
+    }
+    return "Weak";
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.message || "An error occurred.");
+    } else {
+      setError("");
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+        window.location.href = "/login";
+      }, 3000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-500 via-purple-400 to-indigo-300 relative overflow-hidden">
+      {showConfetti && <Confetti />}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(20)].map((_, index) => (
+          <span
+            key={index}
+            className="absolute text-4xl opacity-60 animate-bounce"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+            }}
+          >
+            💪
+          </span>
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <div className="w-full max-w-xl bg-gradient-to-br from-pink-500 via-purple-400 to-indigo-300 p-8 rounded-3xl shadow-lg space-y-8 relative z-10">
+        <h1 className="text-5xl font-extrabold text-center text-white mb-6">
+          Welcome to Our Fitness App!
+        </h1>
+        <p className="text-lg text-center text-white mb-8">
+          Create an account to start your fitness journey! 🏃‍♀️💪
+        </p>
+
+        <form onSubmit={handleSubmit}>
+          {/* Full Name */}
+          <div className="mb-6 relative">
+            <input
+              type="text"
+              id="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <label htmlFor="fullName" className="absolute text-sm left-4 -top-4 text-white">
+              Full Name
+            </label>
+          </div>
+
+          {/* Email Address */}
+          <div className="mb-6 relative">
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <label htmlFor="email" className="absolute text-sm left-4 -top-4 text-white">
+              Email Address
+            </label>
+          </div>
+
+          {/* Password */}
+          <div className="mb-6 relative">
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <label htmlFor="password" className="absolute text-sm left-4 -top-4 text-white">
+              Password
+            </label>
+            <div className="mt-1">
+              <span
+                className={`text-sm ${
+                  passwordStrength === "Strong"
+                    ? "text-green-500"
+                    : passwordStrength === "Medium"
+                    ? "text-yellow-500"
+                    : "text-red-500"
+                }`}
+              >
+                Password Strength: {passwordStrength || "Enter Password"}
+              </span>
+            </div>
+          </div>
+
+          {/* Confirm Password */}
+          <div className="mb-6 relative">
+            <input
+              type="password"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <label htmlFor="confirmPassword" className="absolute text-sm left-4 -top-4 text-white">
+              Confirm Password
+            </label>
+          </div>
+
+          {/* Date of Birth */}
+          <div className="mb-6 relative">
+            <input
+              type="date"
+              id="dateOfBirth"
+              value={formData.dateOfBirth}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <label htmlFor="dateOfBirth" className="absolute text-sm left-4 -top-4 text-white">
+              Date of Birth
+            </label>
+          </div>
+
+          {/* Gender */}
+          <div className="mb-6 relative">
+            <select
+              id="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <label htmlFor="gender" className="absolute text-sm left-4 -top-4 text-white">
+              Gender
+            </label>
+          </div>
+
+          {/* Nationality */}
+          <div className="mb-6 relative">
+            <input
+              type="text"
+              id="nationality"
+              value={formData.nationality}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <label htmlFor="nationality" className="absolute text-sm left-4 -top-4 text-white">
+              Nationality
+            </label>
+          </div>
+
+          {/* Error Message */}
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+          {/* Register Button */}
+          <button
+            type="submit"
+            className="w-full py-3 bg-gradient-to-r from-pink-600 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
