@@ -62,7 +62,7 @@ function Navbar() {
             href="/"
             className="text-white hover:text-purple-300 font-semibold" // Link to the main page
           >
-            Dashboard {/* Main page link */}
+            Main Page {/* Main page link */}
           </a>
         </li>
         <li>
