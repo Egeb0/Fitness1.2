@@ -260,7 +260,7 @@ export default function FitnessPlan() {
         <div className="mt-6 text-center">
           <a
             href="/food-mixer"  // Replace this URL with the correct one
-            className="inline-block bg-blue-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-400 transition duration-300"
+            className="inline-block bg-green-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-400 transition duration-300"
           >
             Check out your food plan on the food mixer!
           </a>

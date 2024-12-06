@@ -111,7 +111,7 @@ export default function SignUpPage() {
               value={formData.fullName}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             />
             <label htmlFor="fullName" className="absolute text-sm left-4 -top-4 text-gray-300">
               Full Name
@@ -126,7 +126,7 @@ export default function SignUpPage() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             />
             <label htmlFor="email" className="absolute text-sm left-4 -top-4 text-gray-300">
               Email Address
@@ -141,7 +141,7 @@ export default function SignUpPage() {
               value={formData.password}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             />
             <label htmlFor="password" className="absolute text-sm left-4 -top-4 text-gray-300">
               Password
@@ -169,7 +169,7 @@ export default function SignUpPage() {
               value={formData.confirmPassword}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             />
             <label htmlFor="confirmPassword" className="absolute text-sm left-4 -top-4 text-gray-300">
               Confirm Password
@@ -184,7 +184,7 @@ export default function SignUpPage() {
               value={formData.dateOfBirth}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             />
             <label htmlFor="dateOfBirth" className="absolute text-sm left-4 -top-4 text-gray-300">
               Date of Birth
@@ -198,7 +198,7 @@ export default function SignUpPage() {
               value={formData.gender}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             >
               <option value="">Select Gender</option>
               <option value="male">Male</option>
@@ -218,7 +218,7 @@ export default function SignUpPage() {
               value={formData.nationality}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-black"
             />
             <label htmlFor="nationality" className="absolute text-sm left-4 -top-4 text-gray-300">
               Nationality

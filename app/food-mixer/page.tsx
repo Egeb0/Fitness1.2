@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";  // Import useRouter for redirection
+import { useRouter } from "next/navigation";
 
 const foodData = [
   { id: 1, food: "Chicken Breast (100g)", calories: 165, type: "Protein" },
@@ -14,21 +14,31 @@ const foodData = [
   { id: 8, food: "Apple (100g)", calories: 52, type: "Fruit" },
   { id: 9, food: "Spinach (100g)", calories: 23, type: "Vegetable" },
   { id: 10, food: "Egg (1 large)", calories: 72, type: "Protein" },
+  { id: 11, food: "Oats (100g)", calories: 389, type: "Carb" },
+  { id: 12, food: "Greek Yogurt (100g)", calories: 59, type: "Protein" },
+  { id: 13, food: "Banana (100g)", calories: 89, type: "Fruit" },
+  { id: 14, food: "Cucumber (100g)", calories: 16, type: "Vegetable" },
+  { id: 15, food: "Peanut Butter (28g)", calories: 190, type: "Fat" },
+  { id: 16, food: "Cottage Cheese (100g)", calories: 98, type: "Protein" },
+  { id: 17, food: "Carrot (100g)", calories: 41, type: "Vegetable" },
+  { id: 18, food: "Chia Seeds (28g)", calories: 137, type: "Fat" },
+  { id: 19, food: "Tomato (100g)", calories: 18, type: "Vegetable" },
+  { id: 20, food: "Tuna (100g)", calories: 132, type: "Protein" },
 ];
 
 export default function FoodMixerPage() {
   const [selectedFoods, setSelectedFoods] = useState<any[]>([]);
-  const router = useRouter(); // Hook for navigation
+  const router = useRouter();
 
   const handleAddFood = (food: typeof foodData[0]) => {
     const existingFoodIndex = selectedFoods.findIndex((item) => item.id === food.id);
-    
+
     if (existingFoodIndex >= 0) {
       const updatedFoods = [...selectedFoods];
       updatedFoods[existingFoodIndex].quantity += 100;
       setSelectedFoods(updatedFoods);
     } else {
-      setSelectedFoods([ ...selectedFoods, { ...food, quantity: 100 } ]);
+      setSelectedFoods([...selectedFoods, { ...food, quantity: 100 }]);
     }
   };
 
@@ -48,15 +58,12 @@ export default function FoodMixerPage() {
     0
   );
 
-  // Function to navigate to Training Page
   const navigateToTraining = () => {
-    router.push('/training');
+    router.push("/training");
   };
 
-  // Logout function
   const handleLogout = () => {
-    // You can add your logout logic here, for example, clearing the session or token
-    router.push('/login');  // Redirect to the login page after logout
+    router.push("/login");
   };
 
   return (
@@ -128,7 +135,6 @@ export default function FoodMixerPage() {
         <h3 className="font-bold text-purple-300">Total Calories: {totalCalories.toFixed(2)} kcal</h3>
       </div>
 
-      {/* Button to navigate to Training Page */}
       <div className="mt-8">
         <button
           onClick={navigateToTraining}
@@ -138,7 +144,6 @@ export default function FoodMixerPage() {
         </button>
       </div>
 
-      {/* Logout Button */}
       <div className="mt-6 text-center">
         <button
           onClick={handleLogout}
